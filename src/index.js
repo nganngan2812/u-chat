@@ -1,14 +1,26 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
+import {StrictMode} from 'react';
+import {createRoot}from 'react-dom/client';
 import './index.css';
 import App from './App';
+import {BrowserRouter} from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
+import AuthProvider from './Context/AuthProvider';
+import AppProvider from './Context/AppProvider';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement);
+
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  <BrowserRouter>
+    <AuthProvider>
+      <AppProvider>
+        <StrictMode>
+          <App />
+        </StrictMode>
+      </AppProvider>
+    </AuthProvider>
+  </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
